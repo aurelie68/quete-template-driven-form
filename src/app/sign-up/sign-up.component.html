@@ -1,0 +1,63 @@
+
+<form #myForm="ngForm" (ngSubmit)="myForm.valid && onSubmit()">
+
+
+    
+
+    <fieldset>
+<label for="firstname-user">Firstname</label>
+<input id="firstname-user" name="firstname-user" type="text" [(ngModel)]="model.firstname" #firstname="ngModel"required minlength="3" required maxlength="15">
+    </fieldset>
+
+<div *ngIf="firstname.errors && myForm.submitted">
+<span *ngIf="firstname.errors?.['required']">Le prénom est requis</span>
+<span *ngIf="firstname.errors?.['minlength']">La longueur minimale doit être supérieure à 2 </span>
+<span *ngIf="firstname.errors?.['maxlength']">La longueur maximale doit être inférieur à 16</span>
+</div>
+
+    <fieldset>
+<label for="lastname-user">Lastname</label>
+<input id="lastname-user" name="lastname-user" type="text" [(ngModel)]="model.lastname" #lastname="ngModel" required minlength="3" required maxlength="15">
+    </fieldset>
+
+    <div *ngIf="lastname.errors && myForm.submitted">
+        <span *ngIf="lastname.errors?.['required']">Le nom est requis</span>
+        <span *ngIf="lastname.errors?.['minlength']">La longueur minimale doit être supérieure à  </span>
+        <span *ngIf="lastname.errors?.['maxlength']">La longueur maximale doit être inférieur à 15</span>
+        </div>
+
+<fieldset>
+    <label for="email-user">Email</label>
+    <input id="email-user" name="email-user" [(ngModel)]="model.email" #email="ngModel" required email>
+</fieldset>
+
+<div *ngIf="email.errors && myForm.submitted">
+    <span *ngIf="email.errors?.['required']">Le champs email est requis</span>
+    <span *ngIf="email.errors?.['email']">L'adresse email doit être valide</span>
+
+    </div>
+
+<fieldset>
+    <label for="password-user">Password</label>
+    <input id="password-user" name="password-user" [(ngModel)]="model.password" #password="ngModel" required password>
+                   "
+</fieldset>
+
+<div *ngIf="password.errors && myForm.submitted">
+    <span *ngIf="password.errors?.['required']">Le mot de passe est requis</span>
+    
+</div> 
+
+    <button type="reset">Restaurer</button>
+    <button type="submit" [disabled]="!myForm.valid">Envoyer</button>
+
+
+
+
+
+
+
+
+
+
+</form>
